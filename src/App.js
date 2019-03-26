@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-
-import './App.css';
+import Menu from './menu.js';
+import './style.css';
+import List from './list';
+import Sort from './sort';
 
 class App extends Component {
   render() {
     return (
-      "Siema"
+      <section className="box">
+        <Menu />
+        <List /> 
+        <Sort />
+      </section> 
+      
     );
   }
 }
