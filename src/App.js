@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import Menu from './menu.js';
 import './style.css';
-import List from './list';
-import Sort from './sort';
+import TaskList from './TaskList.js';
 
 class App extends Component {
+
+  state= {
+    currentCategory: "All",
+    currentIcon: ""
+  }
+
+  handleChangeCategory = (category, icon) => {
+    console.log(icon)
+    this.setState({
+      currentCategory: category,
+      currentIcon: icon
+    })
+  }
+
+
   render() {
     return (
       <section className="box">
-        <Menu />
-        <List /> 
-        <Sort />
+        <Menu onclick={this.handleChangeCategory}/>
+        <TaskList curCat={this.state.currentCategory} icon={this.state.currentIcon} /> 
       </section> 
       
     );

@@ -5,21 +5,39 @@ class Menu extends Component{
         return(
             <nav>
                 <h3> Your lists: </h3>
-                <button type="button" className="btn btn-primary">
-                    Work &nbsp; <i class="fas fa-laptop"></i>
+
+                <button 
+                    type="button"
+                    onClick={() => this.props.onclick("Work", "fas fa-laptop")}
+                    className="btn btn-primary"
+                >
+                    Work &nbsp; <i className="fas fa-laptop"></i>
                 </button> <br/> 
-                <button type="button" className="btn btn-primary">
-                    School &nbsp; <i class="fas fa-book-open"></i>
+
+                <button 
+                    type="button"
+                    onClick={() => this.props.onclick("School", "fas fa-book-open")}
+                    className="btn btn-primary"
+                >
+                    School &nbsp; <i className="fas fa-book-open"></i>
                 </button> < br/>
-                <button type="button" className="btn btn-primary">
-                    Home &nbsp; <i class="fas fa-home"></i>
+
+                <button
+                    type="button" 
+                    onClick={() => this.props.onclick("Home", "fas fa-home")} 
+                    className="btn btn-primary"
+                 >
+                    Home &nbsp; <i className="fas fa-home"></i>
                 </button> < br/>
-                <button type="button" className="btn btn-primary">
+
+                <button 
+                    type="button"
+                    onClick={() => this.props.onclick("All")}
+                    className="btn btn-primary"
+                >
                     All in one
                 </button> < br/>
-                <button type="button" className="btn btn-primary">
-                    Add new &nbsp; <i class="fas fa-plus"></i>
-                </button> < br/>
+
             </nav>
         )
     }
