@@ -1,5 +1,5 @@
 body{
-  background-color: rgb(177, 176, 175) !important;
+  background-color: rgb(180, 180, 180) !important;
   color:white !important;
 }
 .box{
@@ -119,7 +119,7 @@ label.custom-control-label::before{
   z-index:1000;
   position: absolute;
   width:30vw;
-  min-height:22vw;
+  min-height:25vw;
   background-color: rgb(247, 247, 247);
   left:50%;
   top:50%;
@@ -166,6 +166,17 @@ input[type="time"]{
   max-height: 2.5vw;
   font-size:1.1vw;
   margin: 0.1vw 0 0 0;
+}
+.btn.btn-primary.b{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  width:6vw;
+  height:3.5vw;
+  position:absolute;
+  bottom:0.5vw;
+  right:5vw;
+  text-align:center;
 }
 
 @keyframes visibility{

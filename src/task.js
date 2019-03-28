@@ -12,7 +12,7 @@ class Task extends Component{
                     <i className="fas fa-edit"  id={this.props.id}></i>
                 </button>
                 <p className="taskname" style={this.props.style[2]}>{this.props.name}</p> 
-                <p className="deadline">Deadline: <br /><b>20-04-2019 20:00</b></p>
+                <p className="deadline">Deadline: <br /> <b> {this.props.date} </b></p>
                 <button type="button" id={this.props.id} onClick={this.props.handleTaskRemove} className="btn btn-danger">
                     <i className="far fa-trash-alt" id={this.props.id}></i>
                 </button>
