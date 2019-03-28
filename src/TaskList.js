@@ -6,101 +6,87 @@ import AddTask from './AddTask';
 class TaskList extends Component{
     state = {
         tasks: [
-            // {
-            //     Id:0,
-            //     name:"Umyć naczynia",
-            //     category: "Home",
-            //     removed: false,
-            //     done: false
-            // },
-            // {
-            //     Id:1,
-            //     name:"Mockup",
-            //     category: "Work",
-            //     removed: false,
-            //     done: false
-            // },
-            // {
-            //     Id:2,
-            //     name:"Sprawdzian z angielskiego",
-            //     category: "School",
-            //     removed: false,
-            //     done: false
-            // },
-            // {
-            //     Id:3,
-            //     name:"Prasowanie",
-            //     category: "Home",
-            //     removed: false,
-            //     done: false
-            // },
-            // {
-            //     Id:4,
-            //     name:"Raport",
-            //     category: "Work",
-            //     removed: false,
-            //     done: false
-            // },
-            // {
-            //     Id:5,
-            //     name:"Przyroda",
-            //     category: "School",
-            //     removed: false,
-            //     done: false
-            // }
+            {
+                Id:0,
+                name:"Umyć naczynia",
+                category: "Home",
+                date: "",
+                time:"",
+                removed: false,
+                done: false
+            },
+            {
+                Id:1,
+                name:"Przygotować raport",
+                category: "Work",
+                date: "",
+                time:"",
+                removed: false,
+                done: false
+            },
+            {
+                Id:2,
+                name:"Sprawdzian z angielskiego",
+                category: "School",
+                date: "",
+                time:"",
+                removed: false,
+                done: false
+            },
         ],
 
-        editorOn: true,
+        editorOn: false,
         taskNumber: 0,
         newTask:{
-            Id:this.taskNumber,
+            Id:"",
             name:"",
             date: "",
             time:"",
-            category:""
+            category:"",
+            done: false,
+            removed: false
         }
     }
 
     handleTaskName = (e) =>{
-        console.log(this.state.newTask.date)
+        const newTask2 = {...this.state.newTask}
+        newTask2.name = e.target.value;
         this.setState({
-            newTask:{
-                name: e.target.value
-            }
+            newTask:newTask2,
         })
     }
 
     handleDate = (e) =>{
+        const newTask2 = {...this.state.newTask}
         if (e.target.type==="date"){
+            newTask2.date = e.target.value;
             this.setState({
-                newTask:{
-                    date: e.target.value
-                }
+                newTask:newTask2,
             })
         }
         else{
+            newTask2.time = e.target.value;
             this.setState({
-                newTask:{
-                    time: e.target.value
-                }
+                newTask:newTask2,
             })
         }
     }
 
     handleCategory = (e) =>{
-        console.log(e.target.value)
+        const newTask2 = {...this.state.newTask}
+        newTask2.category = e.target.value;
         this.setState({
-            newTask:{
-                category: e.target.value
-            }
+            newTask:newTask2,
         })
     }
     handleSubmit = () =>{
+        const newTask2 = {...this.state.newTask}
+        newTask2.Id = this.state.taskNumber;
         const changedTasks = [...this.state.tasks]
-        changedTasks.push(this.state.newTask)
+        changedTasks.push(newTask2);
         this.setState({
             tasks: changedTasks,
-            taskAmount: this.state.taskNumber + 1,
+            taskNumber: this.state.taskNumber + 1,
             editorOn: false
         })
     }
@@ -119,10 +105,10 @@ class TaskList extends Component{
 
     handleTaskRemove = (e) =>{
         function checkAdult(task) {
-            return task.Id == e.target.id;
+            return task.Id.toString() === e.target.id;
         }
-        const changedTasks = [...this.state.tasks]
-        const taskToRemove = changedTasks.findIndex(checkAdult)
+        const changedTasks = [...this.state.tasks];
+        const taskToRemove = changedTasks.findIndex(checkAdult);
         changedTasks[taskToRemove].removed = true;
         this.setState({
             tasks:changedTasks
@@ -137,9 +123,8 @@ class TaskList extends Component{
     }
 
     handleTaskDone = (e) =>{
-        console.log('dziala')
         function checkAdult(task) {
-            return task.Id == e.target.id;
+            return task.Id.toString() === e.target.id;
         }
         const changedTasks = [...this.state.tasks]
         const taskToDone = changedTasks.findIndex(checkAdult)
@@ -162,7 +147,7 @@ class TaskList extends Component{
                      style={ task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null])}
                      handleTaskRemove={this.handleTaskRemove}
                      handleTaskDone={this.handleTaskDone}
-                     date={task.date + task.time}/>)
+                     date={`${task.date} ${task.time}`}/>)
             })
         }
         else{
@@ -177,9 +162,11 @@ class TaskList extends Component{
                             name={task.name}
                             style={ task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null])}
                             handleTaskRemove={this.handleTaskRemove}
-                            handleTaskDone={this.handleTaskDone}/>)
+                            handleTaskDone={this.handleTaskDone}
+                            date={`${task.date} ${task.time}`}/>)
                              
                 }
+                else return null
             })
         }
 
