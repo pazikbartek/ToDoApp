@@ -11,13 +11,11 @@ class App extends Component {
   }
 
   handleChangeCategory = (category, icon) => {
-    console.log(icon)
     this.setState({
       currentCategory: category,
       currentIcon: icon
     })
   }
-
 
   render() {
     return (

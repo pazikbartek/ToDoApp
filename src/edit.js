@@ -12,8 +12,8 @@ class Edit extends Component{
                     Deadline: <br />
                     <input type="date" /> <input type="time"/> <br/>
 
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Choose list:</label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Choose list:</label>
+                    <select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                         <option value="1">Work</option>
                         <option value="2">School</option>
                         <option value="3">Home</option>
