@@ -10,8 +10,8 @@ class TaskList extends Component{
                 Id:0,
                 name:"Umyć naczynia",
                 category: "Home",
-                date: "",
-                time:"",
+                date: "2019-06-30",
+                time:"15:00",
                 removed: false,
                 done: false
             },
@@ -19,8 +19,8 @@ class TaskList extends Component{
                 Id:1,
                 name:"Przygotować raport",
                 category: "Work",
-                date: "",
-                time:"",
+                date: "2019-06-30",
+                time:"15:00",
                 removed: false,
                 done: false
             },
@@ -28,21 +28,24 @@ class TaskList extends Component{
                 Id:2,
                 name:"Sprawdzian z angielskiego",
                 category: "School",
-                date: "",
-                time:"",
+                date: "2019-06-30",
+                time:"15:00",
                 removed: false,
                 done: false
             },
         ],
 
+
         editorOn: false,
-        taskNumber: 0,
+        maxLength: false,
+        dateGiven: false,
+        taskNumber: 3,
         newTask:{
             Id:"",
             name:"",
             date: "",
             time:"",
-            category:"",
+            category:"Work",
             done: false,
             removed: false
         }
@@ -53,6 +56,7 @@ class TaskList extends Component{
         newTask2.name = e.target.value;
         this.setState({
             newTask:newTask2,
+            maxLength: this.state.newTask.name.length===54 ?  true : false
         })
     }
 
@@ -62,12 +66,14 @@ class TaskList extends Component{
             newTask2.date = e.target.value;
             this.setState({
                 newTask:newTask2,
+                dateGiven:true,
             })
         }
         else{
             newTask2.time = e.target.value;
             this.setState({
                 newTask:newTask2,
+                timeGiven: true,
             })
         }
     }
@@ -80,15 +86,21 @@ class TaskList extends Component{
         })
     }
     handleSubmit = () =>{
-        const newTask2 = {...this.state.newTask}
-        newTask2.Id = this.state.taskNumber;
-        const changedTasks = [...this.state.tasks]
-        changedTasks.push(newTask2);
-        this.setState({
-            tasks: changedTasks,
-            taskNumber: this.state.taskNumber + 1,
-            editorOn: false
-        })
+        if(this.state.newTask.date&&this.state.newTask.time){
+            const newTask2 = {...this.state.newTask}
+            newTask2.Id = this.state.taskNumber;
+            const changedTasks = [...this.state.tasks]
+            changedTasks.push(newTask2);
+            this.setState({
+                tasks: changedTasks,
+                taskNumber: this.state.taskNumber + 1,
+                editorOn: false
+            })
+        }else{
+            this.setState({
+                dateGiven: true,
+            })
+        }
     }
 
     handleAddTask = () =>{
@@ -169,7 +181,6 @@ class TaskList extends Component{
                 else return null
             })
         }
-
         return (
             <main>
                 {this.state.editorOn ? <Edit 
@@ -182,7 +193,8 @@ class TaskList extends Component{
                     handleCategory={this.handleCategory}
                     valueCategory={this.state.newTask.category}
                     handleSubmit={this.handleSubmit}
-                     /> : null}
+                    maxLength={this.state.maxLength}
+                    dateGiven={this.state.dateGiven}/> : null}
 
                 <AddTask curCat={this.props.curCat} icon={this.props.icon} onclick={this.handleAddTask}/>
                 <div className="tasklist">

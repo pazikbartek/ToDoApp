@@ -65,7 +65,6 @@ label.custom-control-label::before{
   height:3.8vw;
   margin: 0 0 2vh 0;
   background-color: gray;
- 
 }
 .btn.btn-success.b{
   width:4vw;
@@ -86,6 +85,7 @@ label.custom-control-label::before{
   text-align: left;
   font-size:1.4vw;
   padding: 0 0 0 1.5vw;
+  overflow: hidden;
 }
 .task p.deadline{
   font-size:1.1vw;
@@ -178,6 +178,17 @@ input[type="time"]{
   right:5vw;
   text-align:center;
 }
+.warning{
+  font-size: 1vw;
+  color:red;
+  margin: 0 0 0 2vw;
+}
+.datewarning{
+  color:red;
+  margin: 0 0 0 0.2vw;
+  font-size: 1vw;
+  animation: show 2s forwards;
+}
 
 @keyframes visibility{
   0% {opacity:1}
@@ -187,6 +198,11 @@ input[type="time"]{
 @keyframes done{
   0% {opacity:1}
   100% {opacity:0.7}
+}
+@keyframes show{
+  0%{opacity:1}
+  100%{opacity:0;
+}
 }
 
 
