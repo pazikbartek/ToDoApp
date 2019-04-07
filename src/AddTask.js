@@ -8,7 +8,7 @@ const AddTask = (props) => {
                 Add task &nbsp; <i className="fas fa-plus"></i>
             </button>
             <div className="custom-control custom-checkbox">
-                <input type="checkbox" className="custom-control-input" id="customCheck1" /> 
+                <input type="checkbox" onClick={props.handleSort} className="custom-control-input" id="customCheck1" /> 
                 <label className="custom-control-label" htmlFor="customCheck1">Sort by date</label>
             </div>
         </div>

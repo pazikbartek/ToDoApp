@@ -13,7 +13,7 @@ class Edit extends Component{
                     Deadline: <br />
                     <input type="date" onChange={this.props.handleDate} value={this.props.valueDate} /> 
                     <input type="time" onChange={this.props.handleDate} value={this.props.valueTime}/>
-                    {this.props.dateGiven ? <span className="datewarning"><b> Enter the date!</b></span> : null} <br/>
+                    {this.props.dateGiven&&this.props.timeGiven ? null:<span className="datewarning"><b> Enter the date</b></span>} <br/>
 
                     <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Choose list:</label>
                     <select className="custom-select mr-sm-2" onChange={this.props.handleCategory} value={this.props.valueCategory} id="inlineFormCustomSelect">

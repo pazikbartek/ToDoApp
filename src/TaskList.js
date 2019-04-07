@@ -11,7 +11,7 @@ class TaskList extends Component{
                 name:"Umyć naczynia",
                 category: "Home",
                 date: "2019-06-30",
-                time:"15:00",
+                time:"15:30",
                 removed: false,
                 done: false
             },
@@ -19,7 +19,7 @@ class TaskList extends Component{
                 Id:1,
                 name:"Przygotować raport",
                 category: "Work",
-                date: "2019-06-30",
+                date: "2019-03-30",
                 time:"15:00",
                 removed: false,
                 done: false
@@ -29,7 +29,7 @@ class TaskList extends Component{
                 name:"Sprawdzian z angielskiego",
                 category: "School",
                 date: "2019-06-30",
-                time:"15:00",
+                time:"16:00",
                 removed: false,
                 done: false
             },
@@ -39,7 +39,10 @@ class TaskList extends Component{
         editorOn: false,
         maxLength: false,
         dateGiven: false,
+        timeGiven: false,
+        sorted: false,
         taskNumber: 3,
+
         newTask:{
             Id:"",
             name:"",
@@ -66,14 +69,14 @@ class TaskList extends Component{
             newTask2.date = e.target.value;
             this.setState({
                 newTask:newTask2,
-                dateGiven:true,
+                dateGiven: e.target.value ? true : false,
             })
         }
         else{
             newTask2.time = e.target.value;
             this.setState({
                 newTask:newTask2,
-                timeGiven: true,
+                timeGiven: e.target.value ? true : false,
             })
         }
     }
@@ -92,13 +95,10 @@ class TaskList extends Component{
             const changedTasks = [...this.state.tasks]
             changedTasks.push(newTask2);
             this.setState({
+                sorted: false,
                 tasks: changedTasks,
                 taskNumber: this.state.taskNumber + 1,
                 editorOn: false
-            })
-        }else{
-            this.setState({
-                dateGiven: true,
             })
         }
     }
@@ -146,6 +146,31 @@ class TaskList extends Component{
         })
     }
 
+    handleSort = () =>{
+        if(!this.state.sorted){
+            const tasks = [...this.state.tasks]
+            tasks.sort(function(a,b){
+                return new Date(a.date + " " +a.time) - new Date(b.date + " " + b.time);
+              });
+            console.log(tasks)
+            this.setState({
+                tasks: tasks,
+                sorted:true,
+            })
+
+        }else{
+            const tasks = [...this.state.tasks]
+            tasks.sort(function(a,b){
+                return a.Id - b.Id
+              });
+            this.setState({
+                tasks: tasks,
+                sorted: false,
+            })
+        }
+
+    }
+
     render(){
         let taskByCat = [];
 
@@ -159,6 +184,7 @@ class TaskList extends Component{
                      style={ task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null])}
                      handleTaskRemove={this.handleTaskRemove}
                      handleTaskDone={this.handleTaskDone}
+                     handleTaskEdit={this.handleTaskEdit}
                      date={`${task.date} ${task.time}`}/>)
             })
         }
@@ -194,9 +220,10 @@ class TaskList extends Component{
                     valueCategory={this.state.newTask.category}
                     handleSubmit={this.handleSubmit}
                     maxLength={this.state.maxLength}
-                    dateGiven={this.state.dateGiven}/> : null}
+                    dateGiven={this.state.dateGiven}
+                    timeGiven={this.state.timeGiven}/> : null}
 
-                <AddTask curCat={this.props.curCat} icon={this.props.icon} onclick={this.handleAddTask}/>
+                <AddTask curCat={this.props.curCat} handleSort={this.handleSort} icon={this.props.icon} onclick={this.handleAddTask}/>
                 <div className="tasklist">
                     {taskByCat}
                 </div>
