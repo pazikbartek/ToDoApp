@@ -7,7 +7,7 @@ class Edit extends Component{
                 <button type="button" onClick={this.props.exit} className="btn btn-danger b"><i className="fas fa-times"></i></button>
                 <div className="form">
                      
-                    <label htmlFor="task">Task name:</label> {this.props.maxLength ? <span className="warning"><b> Maksymalna liczba znaków to 55!</b></span> : null} 
+                    <label htmlFor="task">Task name:</label> {this.props.maxLength ? <span className="warning"><b> Maximum length is 55 characters!</b></span> : null} 
                     <input maxLength={55} className="form-control" onChange={this.props.handleTaskName} value={this.props.valueName}  type="text" placeholder="Write your task..." id="task"/>
                     
                     Deadline: <br />

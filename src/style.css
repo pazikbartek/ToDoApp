@@ -188,7 +188,6 @@ input[type="time"]{
   color:red;
   margin: 0 0 0 0.2vw;
   font-size: 1vw;
-  /* animation: show 2s forwards; */
 }
 
 @keyframes visibility{

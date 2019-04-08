@@ -8,30 +8,33 @@ class TaskList extends Component{
         tasks: [
             {
                 Id:0,
-                name:"Umyć naczynia",
+                name:"Wash the dishes",
                 category: "Home",
-                date: "2019-06-30",
+                date: "2019-05-20",
                 time:"15:30",
                 removed: false,
-                done: false
+                done: false,
+                animationNumber:0,
             },
             {
                 Id:1,
-                name:"Przygotować raport",
+                name:"Report",
                 category: "Work",
-                date: "2019-03-30",
+                date: "2019-07-03",
                 time:"15:00",
                 removed: false,
-                done: false
+                done: false,
+                animationNumber:0,
             },
             {
                 Id:2,
-                name:"Sprawdzian z angielskiego",
+                name:"English test",
                 category: "School",
                 date: "2019-06-30",
                 time:"16:00",
                 removed: false,
-                done: false
+                done: false,
+                animationNumber:0,
             },
         ],
 
@@ -50,7 +53,8 @@ class TaskList extends Component{
             time:"",
             category:"Work",
             done: false,
-            removed: false
+            removed: false,
+            animationNumber:0,
         }
     }
 
@@ -94,8 +98,18 @@ class TaskList extends Component{
             newTask2.Id = this.state.taskNumber;
             const changedTasks = [...this.state.tasks]
             changedTasks.push(newTask2);
+            
+            if(this.state.sorted){
+                changedTasks.sort(function(a,b){
+                    return new Date(a.date + " " +a.time) - new Date(b.date + " " + b.time);
+                  });
+
+            }else{
+                changedTasks.sort(function(a,b){
+                    return a.Id - b.Id
+                  });
+            }
             this.setState({
-                sorted: false,
                 tasks: changedTasks,
                 taskNumber: this.state.taskNumber + 1,
                 editorOn: false
@@ -141,6 +155,7 @@ class TaskList extends Component{
         const changedTasks = [...this.state.tasks]
         const taskToDone = changedTasks.findIndex(checkAdult)
         changedTasks[taskToDone].done = true;
+        changedTasks[taskToDone].animationNumber++;
         this.setState({
             tasks:changedTasks
         })
@@ -152,7 +167,6 @@ class TaskList extends Component{
             tasks.sort(function(a,b){
                 return new Date(a.date + " " +a.time) - new Date(b.date + " " + b.time);
               });
-            console.log(tasks)
             this.setState({
                 tasks: tasks,
                 sorted:true,
@@ -162,7 +176,7 @@ class TaskList extends Component{
             const tasks = [...this.state.tasks]
             tasks.sort(function(a,b){
                 return a.Id - b.Id
-              });
+              }); 
             this.setState({
                 tasks: tasks,
                 sorted: false,
@@ -181,7 +195,9 @@ class TaskList extends Component{
                      id={task.Id}
                      index={index}
                      name={task.name}
-                     style={ task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null])}
+                     style={task.animationNumber<=1 ? (task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null]))
+                     : (task.removed ? [{animation: "visibility 0.5s"}, true] : [{opacity: 0.7}, true, {textDecoration: "line-through"}])}
+
                      handleTaskRemove={this.handleTaskRemove}
                      handleTaskDone={this.handleTaskDone}
                      handleTaskEdit={this.handleTaskEdit}
@@ -198,7 +214,8 @@ class TaskList extends Component{
                             index={nr}
                             key={index}
                             name={task.name}
-                            style={ task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null])}
+                            style={task.animationNumber<=1 ? (task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null]))
+                            : (task.removed ? [{animation: "visibility 0.5s"}, true] : [{opacity: 0.7}, true, {textDecoration: "line-through"}])}
                             handleTaskRemove={this.handleTaskRemove}
                             handleTaskDone={this.handleTaskDone}
                             date={`${task.date} ${task.time}`}/>)
