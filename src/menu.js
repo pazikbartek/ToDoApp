@@ -32,7 +32,7 @@ class Menu extends Component{
 
                 <button 
                     type="button"
-                    onClick={() => this.props.onclick("All")}
+                    onClick={() => this.props.onclick("All", "fas fa-paste")}
                     className="btn btn-primary"
                 >
                     All in one

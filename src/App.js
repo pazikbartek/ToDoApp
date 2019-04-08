@@ -7,7 +7,7 @@ class App extends Component {
 
   state= {
     currentCategory: "All",
-    currentIcon: ""
+    currentIcon: "fas fa-paste"
   }
 
   handleChangeCategory = (category, icon) => {
