@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Menu extends Component{
     render(){
         return(
-            <nav>
+            <div className="menu">
                 <h3> Your lists: </h3>
 
                 <button 
@@ -38,7 +38,7 @@ class Menu extends Component{
                     All in one
                 </button> < br/>
 
-            </nav>
+            </div>
         )
     }
 }

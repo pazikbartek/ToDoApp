@@ -9,7 +9,7 @@ body{
   justify-content: space-between;
   background-color: rgba(24, 24, 24, 0.3);
 }
-nav{
+.menu{
   width:15vw; 
   min-height: 95vh;
   padding: 10vh 2.5vw 0 2.5vw;
@@ -28,7 +28,7 @@ nav{
 .btn.btn-primary:hover{
   transform: scale(1.02);
 }
-nav h3{
+.menu h3{
   margin-bottom: 10vh;
   font-size:2.25vw;
 }
@@ -38,10 +38,8 @@ main{
 }
 .addtask{
   display:flex;
-  padding: 0 0 2vh 0;
 }
 .addtask h1{
-  line-height:11vh;
   font-size:3.8vw;
   margin: 0 0 0 8vw;
   width:18vw;
@@ -49,6 +47,8 @@ main{
 .custom-control.custom-checkbox{
   font-size: 1.4vw;
   padding: 4.5vw 0 0 0;
+  line-height:4vh;
+  height:4vh;
 }
 label.custom-control-label::before{
   transform: scale(1.5);
@@ -71,7 +71,7 @@ label.custom-control-label::before{
   align-items: center;
   justify-content: space-between;
   height:3.8vw;
-  margin: 0 0 2vh 0;
+  margin: 0 auto 2vh auto;
   background-color: rgb(190, 190, 190);
   color:black;
   width:74vw;
@@ -213,5 +213,68 @@ input[type="time"]{
 }
 }
 
+@media screen and (max-width: 800px) {
+  .box{
+    flex-direction: column-reverse;
+    align-items: center;
+    display:flex;
+  }
+  .menu{
+    display:flex;
+    justify-content: space-around;
+    width:70vw; 
+    min-height:5vh;
+    padding: 0 0 0 0;
+    margin:0;
+    border-right: none;
+    align-self:auto;
+    position: fixed; 
+    top:17vh;
+    margin-top:0;
+  }
+  .menu h3{
+    display:none;
+  }
+  main{
+    width:85vw;
+    padding: 0 0 0 0;
+  }
+  .btn.btn-primary{
+    margin: 0 0 0 0;
+  }
+  .tasklist{
+    margin: 20vh auto 0 auto;
+  }
+  .task{
+    height:5vw;
+    margin: 0 auto 2vh auto;
+    width:85vw;
+  }
+  .addtask{
+    margin-top:3vh;
+  }
 
-
+  .custom-control.custom-checkbox{
+    font-size: 2vw;
+    padding: 1vw 0 0 0;
+  }
+  .btn.btn-primary{
+    width:15vw;
+    height: 7.5vw;
+    font-size: 2vw;
+  }
+  .task p.taskname{
+    font-size:1.6vw;
+  }
+  .task p.deadline{
+    font-size:1.3vw;
+  }
+  .addtask h1{
+    font-size:5.2vw;
+  }
+  .btn.btn-success{
+    width:17vw;
+    height: 6vw;
+    font-size: 2.3vw;
+  }
+}
