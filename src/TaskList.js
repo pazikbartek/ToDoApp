@@ -39,7 +39,7 @@ class TaskList extends Component{
         ],
 
 
-        editorOn: false,
+        editorOn: true,
         maxLength: false,
         dateGiven: false,
         timeGiven: false,
@@ -63,7 +63,7 @@ class TaskList extends Component{
         newTask2.name = e.target.value;
         this.setState({
             newTask:newTask2,
-            maxLength: this.state.newTask.name.length===54 ?  true : false
+            maxLength: this.state.newTask.name.length===49 ?  true : false
         })
     }
 
