@@ -37,7 +37,6 @@ class Menu extends Component{
                 >
                     All in one
                 </button> < br/>
-
             </div>
         )
     }

@@ -245,7 +245,6 @@ class TaskList extends Component{
                     {taskByCat}
                 </div>
             </main>
-            
         )
     }
 }

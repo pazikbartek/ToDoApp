@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Menu from './menu.js';
-import './style.css';
+import './styles.css';
 import TaskList from './TaskList.js';
 
 class App extends Component {
@@ -27,6 +27,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
