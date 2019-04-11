@@ -39,7 +39,7 @@ class TaskList extends Component{
         ],
 
 
-        editorOn: true,
+        editorOn: false,
         maxLength: false,
         dateGiven: false,
         timeGiven: false,

@@ -242,7 +242,7 @@ body{
     }
     .tasklist{
       margin: 20vh auto 0 auto;
-      min-height:69vh;
+      min-height:69.2vh;
     }
     .task{
       height:5.5vw;
@@ -335,6 +335,9 @@ body{
   }
   
   @media screen and (max-width: 500px) {
+    body{
+      background-image: url(tlo2.jpg);
+    }
     .menu{
       top:15vh;
       width:80vw;
@@ -344,6 +347,7 @@ body{
     }
     .tasklist{
       margin: 20vh auto 0 auto;
+      min-height:68.7vh;
     }
     .task{
       height:8vw;
@@ -377,6 +381,7 @@ body{
       width:18vw;
       height: 8vw;
       font-size: 2.5vw;
+      margin: 0 18vw 0 15vw;
     }
     .btn.btn-success.b{
       width:4.1vw;
@@ -446,6 +451,7 @@ body{
     }
     .tasklist{
       margin: 17vh auto 0 auto;
+      min-height:70vh;
     }
     .task{
       height:10vw;
@@ -480,7 +486,7 @@ body{
       width:22vw;
       height: 10vw;
       font-size: 3vw;
-      margin: 0 16vw 0 11vw;
+      margin: 0 15vw 0 25vw;
     }
     .btn.btn-success.b{
       width:7vw;
@@ -501,47 +507,58 @@ body{
     }
     
     .editor{
-        width:50vw;
-        min-height:48vw;
+        width:55vw;
+        min-height:52vw;
       }
       .form{
         margin:2vw 0 0 2vw;
-        width: 42vw;
-        min-height: 30vw;
-        font-size: 2.2vw;
+        width: 45vw;
+        min-height: 35vw;
+        font-size: 2.5vw;
       }
       #task.form-control{
-        margin: 0 0 3vw 0;
-        min-height: 4.8vw;
-        font-size:1.8vw;
+        margin: 0 0 4vw 0;
+        min-height: 5.3vw;
+        font-size:2.2vw;
       }
       input[type="date"]{
         margin: 0.5vw 0.8vw 4.5vw 0;
-        min-height: 4.8vw;
+        min-height: 5.3vw;
       }
       input[type="time"]{
-        min-height: 4.8vw;
+        min-height: 5.3vw;
       }
       .btn.btn-danger.b{
-        width:5.5vw;
-        height:5.5vw;
-        font-size: 2.4vw;
+        width:6.5vw;
+        height:6.5vw;
+        font-size: 2.7vw;
       }
       .custom-select.mr-sm-2{
-        min-height: 6vw;
-        font-size:1.8vw;
+        min-height: 7vw;
+        font-size:2vw;
         width:28vw;
       }
       .btn.btn-primary.b{
-        width:11vw;
-        height:6vw;
+        width:13vw;
+        height:8vw;
       }
       .warning{
-        font-size: 1.5vw;
+        font-size: 1.7vw;
         margin: 0 0 0 0.5vw;
       }
       .datewarning{
-        font-size: 1.5vw;
+        font-size: 1.7vw;
       }
+  }
 
+  @media screen and (max-width: 380px){
+    .tasklist{
+      min-height:71vh;
+    }
+  }
+
+  @media screen and (max-width: 320px){
+    .tasklist{
+      min-height:71.8vh;
+    }
   }
