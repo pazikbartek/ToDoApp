@@ -44,7 +44,7 @@ class TaskList extends Component{
         dateGiven: false,
         timeGiven: false,
         sorted: false,
-        taskNumber: 3,
+        taskNumber: 3+localStorage.length,
 
         newTask:{
             Id:"",
@@ -98,6 +98,7 @@ class TaskList extends Component{
             newTask2.Id = this.state.taskNumber;
             const changedTasks = [...this.state.tasks]
             changedTasks.push(newTask2);
+            localStorage.setItem(localStorage.length, JSON.stringify(newTask2));
             
             if(this.state.sorted){
                 changedTasks.sort(function(a,b){
@@ -136,6 +137,7 @@ class TaskList extends Component{
         const changedTasks = [...this.state.tasks];
         const taskToRemove = changedTasks.findIndex(checkAdult);
         changedTasks[taskToRemove].removed = true;
+        localStorage.removeItem(changedTasks[taskToRemove].Id - 3)
         this.setState({
             tasks:changedTasks
         })
@@ -156,6 +158,13 @@ class TaskList extends Component{
         const taskToDone = changedTasks.findIndex(checkAdult)
         changedTasks[taskToDone].done = true;
         changedTasks[taskToDone].animationNumber++;
+
+        if(changedTasks[taskToDone].Id>2){
+            let taskFromLS =  JSON.parse(localStorage.getItem(changedTasks[taskToDone].Id - 3));
+            taskFromLS.done = true;
+            localStorage.setItem(changedTasks[taskToDone].Id - 3, JSON.stringify(taskFromLS))
+        } 
+
         this.setState({
             tasks:changedTasks
         })
@@ -182,10 +191,30 @@ class TaskList extends Component{
                 sorted: false,
             })
         }
+    }
 
+    componentDidMount(){
+
+        const changedTasks = [...this.state.tasks]
+        let arrayOfValues = [];
+        for(let i in localStorage){
+            if(localStorage.hasOwnProperty(i)){
+                arrayOfValues.push(localStorage[i]);
+            }
+        }
+
+        arrayOfValues.forEach((el)=>{
+            let taskFromLS = JSON.parse(el);
+            changedTasks.push(taskFromLS);
+        })
+        
+        this.setState({
+            tasks: changedTasks
+        })
     }
 
     render(){
+        
         let taskByCat = [];
 
         if(this.props.curCat==="All"){
@@ -195,7 +224,7 @@ class TaskList extends Component{
                      id={task.Id}
                      index={index}
                      name={task.name}
-                     style={task.animationNumber<=1 ? (task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null]))
+                     style={task.animationNumber<=1 ? (task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.1s forwards"}, true, {textDecoration: "line-through"}] : [null]))
                      : (task.removed ? [{animation: "visibility 0.5s"}, true] : [{opacity: 0.7}, true, {textDecoration: "line-through"}])}
 
                      handleTaskRemove={this.handleTaskRemove}
@@ -214,7 +243,7 @@ class TaskList extends Component{
                             index={nr}
                             key={index}
                             name={task.name}
-                            style={task.animationNumber<=1 ? (task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.3s forwards"}, true, {textDecoration: "line-through"}] : [null]))
+                            style={task.animationNumber<=1 ? (task.removed ? [{animation: "visibility 0.5s"}, true] : (task.done ? [{animation: "done 0.1s forwards"}, true, {textDecoration: "line-through"}] : [null]))
                             : (task.removed ? [{animation: "visibility 0.5s"}, true] : [{opacity: 0.7}, true, {textDecoration: "line-through"}])}
                             handleTaskRemove={this.handleTaskRemove}
                             handleTaskDone={this.handleTaskDone}
